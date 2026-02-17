@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import User from '../user.model';
 import { UserService } from '../user.service';
 
 @Component({
@@ -9,22 +8,12 @@ import { UserService } from '../user.service';
 })
 export class UserListComponent {
 
-  users: User[] = [];
+  users$ = this.userService.getUsers();
 
   constructor(private userService: UserService) { }
 
-  ngOnInit(): void {
-    // this.users = this.userService.getUsers();
-    this.userService.getUsers().subscribe(users => {
-      this.users = users;
-    });
-  }
-
   deleteUser(id: any): void {
-    // this.userService.removeUser(id);
-    this.userService.removeUser(id).subscribe(users => {
-      this.users = users;
-    });
+    this.userService.removeUser(id);
   }
 
 }
