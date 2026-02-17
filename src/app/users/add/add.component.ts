@@ -18,12 +18,18 @@ export class UserAddComponent {
 
   onSubmit() {
     console.log(this.user);
-    this.userService.addUser(this.user);
-    this.user = {
-      name: '',
-      email: '',
-      phone: ''
-    }; 
+    
+    // this.userService.addUser(this.user);
+    this.userService.addUser(this.user).subscribe(users => {
+      console.log(users);
+
+      this.user = {
+        name: '',
+        email: '',
+        phone: ''
+      }; 
+    });
+    
   }
 
 }
